@@ -33,6 +33,7 @@ public class VendingServiceImpl implements VendingService, ILogger {
         final List<Coin> rejected   = lCoins.stream().filter(coin -> !coin.isValid()).collect(Collectors.toList());
 
         wallet = new Wallet(acceptable);
+
         return rejected;
     }
 
@@ -59,8 +60,14 @@ public class VendingServiceImpl implements VendingService, ILogger {
 
     @Override
     public Boolean addNewProductService(Map<Product, Integer> product) {
-        return null;
+        try{
+            productService.addProductsInStock(product);
+            log().info("Ok add new product in stock");
+            return true;
+        }catch(Exception ex){
+            log().error("Error: ",ex);
+            return false;
+        }
     }
-
 
 }
