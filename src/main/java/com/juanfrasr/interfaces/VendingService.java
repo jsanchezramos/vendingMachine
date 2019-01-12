@@ -1,9 +1,10 @@
 package com.juanfrasr.interfaces;
 
-import com.juanfrasr.model.ProductStock;
+import com.juanfrasr.model.Product;
 
-import java.util.List;
+import java.util.Map;
 
 public interface VendingService {
-    Boolean upServiceMachine(final String coinString, final List<ProductStock> lStockProduct);
+    Boolean upServiceMachine(final String coinString);
+    Boolean addNewProductService(final Map<Product,Integer> product);
 }

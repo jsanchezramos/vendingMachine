@@ -3,7 +3,7 @@ package com.juanfrasr.helpers;
 
 import com.juanfrasr.model.Product;
 import com.juanfrasr.model.ProductStock;
-import com.juanfrasr.repository.InMemory;
+import com.juanfrasr.repository.MemoryImpl;
 import com.juanfrasr.repository.Memory;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class ProductHelper {
 
     private static ProductHelper instance;
-    private Memory memory = InMemory.getInstance();
+    private Memory memory = MemoryImpl.getInstance();
     private List<ProductStock> lProductsStock = memory.getMemory();
 
     public static synchronized ProductHelper getInstance(){

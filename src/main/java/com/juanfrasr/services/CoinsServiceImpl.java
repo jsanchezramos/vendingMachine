@@ -6,7 +6,7 @@ import com.juanfrasr.model.Coin;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class CoinsServiceImpl implements CoinsService {
+public class CoinsServiceImpl implements CoinsService , ILogger{
 
     private static final Map<String,Coin> SUPPORTED_COIN_MAP = new HashMap<>();
 
@@ -28,14 +28,14 @@ public class CoinsServiceImpl implements CoinsService {
             coinz = Arrays.asList(coinString.trim().split("\\s+")).stream().map(this::findCoinType).collect(Collectors.toList());
         }
 
-        return coinz;
+        return Collections.unmodifiableList(coinz);
     }
 
     private Coin findCoinType(final String centValue) {
         Coin coin = SUPPORTED_COIN_MAP.get(centValue);
 
         if (coin == null) {
-            coin = new Coin("",0,false);
+            coin = new Coin(centValue,0,false);
         }
         return coin;
     }

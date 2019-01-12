@@ -88,3 +88,7 @@ fabric.properties
 
 /.idea/
 !/.idea/
+/target/
+target/classes/log4j.properties
+target/generated-sources/
+target/generated-test-sources/

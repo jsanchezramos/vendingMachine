@@ -8,7 +8,7 @@ import com.juanfrasr.model.ProductStock;
 import java.util.List;
 import java.util.Map;
 
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService , ILogger{
 
 
     private ProductHelper productHelper = ProductHelper.getInstance();

@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class InMemory implements Memory {
+public class MemoryImpl implements Memory {
 
-    private static InMemory instance;
+    private static MemoryImpl instance;
 
-    public static synchronized InMemory getInstance(){
+    public static synchronized MemoryImpl getInstance(){
         if(instance == null){
-            instance = new InMemory();
+            instance = new MemoryImpl();
         }
         return instance;
     }
