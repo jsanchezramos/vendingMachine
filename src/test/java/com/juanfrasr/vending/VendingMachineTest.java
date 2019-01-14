@@ -28,13 +28,8 @@ public class VendingMachineTest {
     @Test
     public void createMachineVending(){
 
-        final Map<Product,Integer> PRODUTS_STOCK = new HashMap<>();
-
-        PRODUTS_STOCK.put(new Product("Fanta",2.30),10);
-
         CoinsService coinsService = new CoinsServiceImpl();
         ProductService productService = new ProductServiceImpl();
-
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
         assertTrue(vendingService.upServiceMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
@@ -47,8 +42,6 @@ public class VendingMachineTest {
     @Test
     public void notValidMoneyToRunVending(){
 
-        final Map<Product,Integer> PRODUTS_STOCK = new HashMap<>();
-
         CoinsService coinsService = new CoinsServiceImpl();
         ProductService productService = new ProductServiceImpl();
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
@@ -57,7 +50,7 @@ public class VendingMachineTest {
     }
 
     /**
-     * Add new product in stock
+     * Add new product and stock
      */
     @Test
     public void vendingAddNewProductStock(){
@@ -68,7 +61,6 @@ public class VendingMachineTest {
 
         CoinsService coinsService = new CoinsServiceImpl();
         ProductService productService = new ProductServiceImpl();
-
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
         assertTrue(vendingService.addNewProductService(PRODUTS_STOCK));

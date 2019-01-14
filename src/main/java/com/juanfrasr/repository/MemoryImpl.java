@@ -23,14 +23,15 @@ public class MemoryImpl implements Memory {
             new ProductStock(new Product("Sprite",1.40), 20),
             new ProductStock(new Product("Water",0.90), 2));
 
-    public List<ProductStock> getMemory(){
-        return lProductsStock;
+    @Override
+    public void addProduct(Product product,int quantity) {
+        List<ProductStock> productStocks = new ArrayList<ProductStock>(this.lProductsStock);
+        productStocks.add(new ProductStock(product,quantity));
     }
 
     @Override
-    public void addMemoryProduct(ProductStock productStock) {
-        List<ProductStock> productStocks = new ArrayList<ProductStock>(this.lProductsStock);
-        productStocks.add(productStock);
+    public List<ProductStock> getAllProducts(){
+        return lProductsStock;
     }
 
 

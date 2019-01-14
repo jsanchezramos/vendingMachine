@@ -1,9 +1,10 @@
 package com.juanfrasr.services;
 
-import com.juanfrasr.helpers.ProductHelper;
 import com.juanfrasr.interfaces.ProductService;
 import com.juanfrasr.model.Product;
 import com.juanfrasr.model.ProductStock;
+import com.juanfrasr.repository.Memory;
+import com.juanfrasr.repository.MemoryImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -11,11 +12,11 @@ import java.util.Map;
 public class ProductServiceImpl implements ProductService , ILogger{
 
 
-    private ProductHelper productHelper = ProductHelper.getInstance();
+    private Memory productMemory = MemoryImpl.getInstance();
 
     @Override
     public void addProductsInStock(Map<Product, Integer> mProducts) {
-        mProducts.entrySet().stream().forEach(m -> productHelper.addProduct(m.getKey(),m.getValue()));
+        mProducts.entrySet().stream().forEach(m -> productMemory.addProduct(m.getKey(),m.getValue()));
     }
 
     @Override
@@ -30,6 +31,6 @@ public class ProductServiceImpl implements ProductService , ILogger{
 
     @Override
     public List<ProductStock> getAllProductStock() {
-        return productHelper.getAllProducts();
+        return productMemory.getAllProducts();
     }
 }
