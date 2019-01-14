@@ -3,7 +3,6 @@ package com.juanfrasr.vending;
 import com.juanfrasr.interfaces.CoinsService;
 import com.juanfrasr.interfaces.ProductService;
 import com.juanfrasr.interfaces.VendingService;
-import com.juanfrasr.model.Coin;
 import com.juanfrasr.model.Product;
 import com.juanfrasr.services.CoinsServiceImpl;
 import com.juanfrasr.services.ProductServiceImpl;
@@ -63,7 +62,7 @@ public class VendingMachineTest {
         ProductService productService = new ProductServiceImpl();
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
-        assertTrue(vendingService.addNewProductService(PRODUTS_STOCK));
+        assertTrue(vendingService.addNewProductVending(PRODUTS_STOCK));
 
         assertTrue(vendingService.upServiceMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
 

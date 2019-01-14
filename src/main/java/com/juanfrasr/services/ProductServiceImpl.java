@@ -1,5 +1,6 @@
 package com.juanfrasr.services;
 
+import com.juanfrasr.exceptions.NotProductInStock;
 import com.juanfrasr.interfaces.ProductService;
 import com.juanfrasr.model.Product;
 import com.juanfrasr.model.ProductStock;
@@ -20,17 +21,38 @@ public class ProductServiceImpl implements ProductService , ILogger{
     }
 
     @Override
-    public Product findProduct(String nameProcuct) {
-        return null;
+    public ProductStock findProduct(String nameProcuct) {
+        List<ProductStock> lProduct = productMemory.getAllProducts();
+        return lProduct.stream().filter(p-> p.getProduct().getName().equals(nameProcuct)).findFirst().orElse(null);
+
     }
 
     @Override
-    public void cancelProduct(Product producr) {
+    public ProductStock returnOneProduct(Product product) {
+        ProductStock productStock = findProduct(product.getName());
+        productStock.setQuantity(productStock.getQuantity() +1);
 
+        productMemory.updateProductStock(productStock);
+
+        return  productStock;
     }
+
 
     @Override
     public List<ProductStock> getAllProductStock() {
-        return productMemory.getAllProducts();
+        if(productMemory.getAllProducts().size() < 0){
+            throw new NotProductInStock();
+        }else{
+            return productMemory.getAllProducts();
+        }
+    }
+
+    @Override
+    public ProductStock refilldProduct(Product product, int quantity) {
+        ProductStock productStock = findProduct(product.getName());
+        productStock.setQuantity(quantity + productStock.getQuantity());
+        productMemory.updateProductStock(productStock);
+
+        return productStock;
     }
 }

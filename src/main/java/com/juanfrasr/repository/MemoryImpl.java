@@ -2,12 +2,15 @@ package com.juanfrasr.repository;
 
 import com.juanfrasr.model.Product;
 import com.juanfrasr.model.ProductStock;
+import com.juanfrasr.services.ILogger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
 
-public class MemoryImpl implements Memory {
+public class MemoryImpl implements Memory, ILogger {
 
     private static MemoryImpl instance;
 
@@ -34,5 +37,13 @@ public class MemoryImpl implements Memory {
         return lProductsStock;
     }
 
+    @Override
+    public void updateProductStock(ProductStock productStock) {
+        OptionalInt indexOpt = IntStream.range(0, lProductsStock.size())
+                .filter(i -> productStock.equals(lProductsStock.get(i)))
+                .findFirst();
+
+        lProductsStock.set(indexOpt.getAsInt(),productStock);
+    }
 
 }

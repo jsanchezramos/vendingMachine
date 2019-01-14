@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface VendingService {
     Boolean upServiceMachine(final String coinString);
-    Boolean addNewProductService(final Map<Product,Integer> product);
+    Boolean addNewProductVending(final Map<Product,Integer> product);
 }

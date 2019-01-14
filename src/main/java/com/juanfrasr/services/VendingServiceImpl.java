@@ -13,12 +13,14 @@ import java.util.stream.Collectors;
 /**
  * VendingServiceImpl to service vending machine.
  */
+
 public class VendingServiceImpl implements VendingService, ILogger {
 
-    private VendingMachine vendingMachine;
+    private VendingMachine vendingMachine = null;
     private CoinsService coinsService ;
     private ProductService productService;
-    private Wallet wallet;
+    private Bank bank;
+    private Boolean statusVending = false;
 
 
     public VendingServiceImpl(CoinsService coinsService,ProductService productService) {
@@ -32,7 +34,7 @@ public class VendingServiceImpl implements VendingService, ILogger {
         final List<Coin> acceptable = lCoins.stream().filter(Coin::isValid).collect(Collectors.toList());
         final List<Coin> rejected   = lCoins.stream().filter(coin -> !coin.isValid()).collect(Collectors.toList());
 
-        wallet = new Wallet(acceptable);
+        bank = new Bank(acceptable);
 
         return rejected;
     }
@@ -42,24 +44,28 @@ public class VendingServiceImpl implements VendingService, ILogger {
         try{
             List<Coin> rejected = accepCoins(coinString);
 
-            if(wallet.getAvailable().isEmpty()){
+            if(bank.getAvailable().isEmpty()){
                 throw new NotValidMoneyException();
             }
 
-            vendingMachine = new VendingMachine(productService.getAllProductStock(),wallet);
+            vendingMachine = new VendingMachine(productService.getAllProductStock(), bank);
 
             if(rejected.size()>0)log().info("returning coins: {}", rejected);
 
-            log().info("Ok up Service Machine");
-            return true;
+            if(vendingMachine != null){
+                log().info("Ok up Service Machine");
+                statusVending = true;
+            }
+
         }catch(Exception ex){
             log().error("Error up Service Machine",ex);
             return false;
         }
+        return statusVending;
     }
 
     @Override
-    public Boolean addNewProductService(Map<Product, Integer> product) {
+    public Boolean addNewProductVending(Map<Product, Integer> product) {
         try{
             productService.addProductsInStock(product);
             log().info("Ok add new product in stock");
@@ -69,5 +75,4 @@ public class VendingServiceImpl implements VendingService, ILogger {
             return false;
         }
     }
-
 }
