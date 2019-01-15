@@ -20,7 +20,7 @@ Defined different TDD:
 - Vending add coins
 
 
-to run  tdd in project execute : 
+Export project to Intelij idea to run  tdd in project execute : 
 
 ```
 mvn test
