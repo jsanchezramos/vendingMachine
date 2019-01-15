@@ -1,6 +1,6 @@
 package com.juanfrasr.services;
 
-import com.juanfrasr.exceptions.NotValidMoneyException;
+import com.juanfrasr.exceptions.NotMoneyException;
 import com.juanfrasr.interfaces.CoinsService;
 import com.juanfrasr.interfaces.ProductService;
 import com.juanfrasr.interfaces.VendingService;
@@ -35,6 +35,8 @@ public class VendingServiceImpl implements VendingService, ILogger {
         final List<Coin> rejected   = lCoins.stream().filter(coin -> !coin.isValid()).collect(Collectors.toList());
 
         bank = new Bank(acceptable);
+        double sum = acceptable.stream().mapToDouble(c->c.getValue()).sum();
+        bank.setTotal(sum);
 
         return rejected;
     }
@@ -45,7 +47,7 @@ public class VendingServiceImpl implements VendingService, ILogger {
             List<Coin> rejected = accepCoins(coinString);
 
             if(bank.getAvailable().isEmpty()){
-                throw new NotValidMoneyException();
+                throw new NotMoneyException();
             }
 
             vendingMachine = new VendingMachine(productService.getAllProductStock(), bank);
@@ -74,5 +76,18 @@ public class VendingServiceImpl implements VendingService, ILogger {
             log().error("Error: ",ex);
             return false;
         }
+    }
+
+    @Override
+    public void addCoinVending(String coinString) {
+        List<Coin> lCoin = bank.getAvailable();
+        bank.setAvailable(coinsService.addCoinToList(lCoin,coinString));
+        double sum = lCoin.stream().mapToDouble(c->c.getValue()).sum();
+        bank.setTotal(sum);
+    }
+
+    @Override
+    public double getCash() {
+        return bank.getTotal();
     }
 }

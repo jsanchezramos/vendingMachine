@@ -67,5 +67,20 @@ public class VendingMachineTest {
         assertTrue(vendingService.upServiceMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
 
     }
+    /**
+     * Add coin in vending
+     */
+    @Test
+    public void vendingAddCoins(){
+        CoinsService coinsService = new CoinsServiceImpl();
+        ProductService productService = new ProductServiceImpl();
+        VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
+        vendingService.upServiceMachine("0.10€");
+        vendingService.addCoinVending("2€");
+        assertTrue(vendingService.getCash() == 2.10);
+
+        vendingService.addCoinVending("0.50€");
+        assertTrue(vendingService.getCash() == 2.60);
+    }
 }

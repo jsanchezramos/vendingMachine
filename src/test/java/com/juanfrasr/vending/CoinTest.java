@@ -42,7 +42,6 @@ public class CoinTest {
     public void refillCoins(){
         CoinsService coinsService =  new CoinsServiceImpl();
 
-
         List<Coin> lCoin = new ArrayList<>();
         lCoin.add(new Coin("50 centimos",0.50,true));
         Bank bank = new Bank(lCoin);
@@ -55,7 +54,6 @@ public class CoinTest {
 
         assertTrue(bank.getTotal() != 0.50);
         assertTrue(bank.getAvailable().size()>1);
-
     }
 
 }
