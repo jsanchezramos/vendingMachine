@@ -86,8 +86,6 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-/.idea/
-!/.idea/
 /target/
 target/classes/log4j.properties
 target/generated-sources/
