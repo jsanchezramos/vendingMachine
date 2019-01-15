@@ -8,6 +8,7 @@
     <artifactId>vending.Machine</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
+        <finalName>vendingMachine</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
