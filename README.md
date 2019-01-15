@@ -1,20 +1,27 @@
 # vendingMachine
 Vending Machine in Java
 
-The java proyecto is oriented OOP .
+Manage all the functionalities of a vending machine
 
-Defined diferentes TDD:
+Defined different TDD:
 
-## CoinTest
+## Coin
 - Return all coins to cancel product
 - Refill to bank vending
 
-## ProductTest
+## Product
 - Return product 
 - Refill product in stock
 
-## VendingMachineTest
+## VendingMachine
 - Create vending machine
 - Check not valid money to up machine
 - Vending add new product and stock.
 - Vending add coins
+
+
+to run  tdd in project execute : 
+
+```
+mvn test
+```
