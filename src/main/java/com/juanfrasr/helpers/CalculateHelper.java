@@ -6,13 +6,16 @@ import com.juanfrasr.model.Coin;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculoHelper {
+public class CalculateHelper {
 
-    private static CalculoHelper instance;
+    private CalculateHelper() {
+    }
 
-    public static synchronized CalculoHelper getInstance(){
+    private static CalculateHelper instance;
+
+    public static synchronized CalculateHelper getInstance(){
         if(instance == null){
-            instance = new CalculoHelper();
+            instance = new CalculateHelper();
         }
         return instance;
     }

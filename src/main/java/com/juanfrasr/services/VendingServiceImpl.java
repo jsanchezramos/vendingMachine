@@ -28,7 +28,7 @@ public class VendingServiceImpl implements VendingService, ILogger {
         this.productService = productService;
     }
 
-    private List<Coin> accepCoins(final String coinString){
+    private List<Coin> validateCoins(final String coinString){
         List<Coin> lCoins =  coinsService.parseCoins(coinString);
 
         final List<Coin> acceptable = lCoins.stream().filter(Coin::isValid).collect(Collectors.toList());
@@ -42,9 +42,9 @@ public class VendingServiceImpl implements VendingService, ILogger {
     }
 
     @Override
-    public Boolean upServiceMachine(final String coinString){
+    public Boolean startVendingMachine(final String coinString){
         try{
-            List<Coin> rejected = accepCoins(coinString);
+            List<Coin> rejected = validateCoins(coinString);
 
             if(bank.getAvailable().isEmpty()){
                 throw new NotMoneyException();
@@ -58,7 +58,6 @@ public class VendingServiceImpl implements VendingService, ILogger {
                 log().info("Ok up Service Machine");
                 statusVending = true;
             }
-
         }catch(Exception ex){
             log().error("Error up Service Machine",ex);
             return false;
@@ -79,9 +78,24 @@ public class VendingServiceImpl implements VendingService, ILogger {
     }
 
     @Override
+    public void sellProduct(Product product) {
+        ProductStock productStock = productService.returnProduct(product);
+        log().info("stock product : "+ productStock.getQuantity());
+        log().info("cash: "+bank.getTotal());
+
+        double change = bank.getTotal() - productStock.getProduct().getPrice();
+        List<Coin> lCoin = coinsService.returnCoin(bank.getAvailable(),change);
+
+        bank.setAvailable(lCoin);
+        bank.setTotal(lCoin.stream().mapToDouble(c->c.getValue()).sum());
+
+        log().info( " Total cash to return productg "+ bank.getTotal());
+    }
+
+    @Override
     public void addCoinVending(String coinString) {
         List<Coin> lCoin = bank.getAvailable();
-        bank.setAvailable(coinsService.addCoinToList(lCoin,coinString));
+        bank.setAvailable(coinsService.addCoin(lCoin,coinString));
         double sum = lCoin.stream().mapToDouble(c->c.getValue()).sum();
         bank.setTotal(sum);
     }

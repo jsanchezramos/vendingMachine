@@ -1,6 +1,6 @@
 package com.juanfrasr.services;
 
-import com.juanfrasr.helpers.CalculoHelper;
+import com.juanfrasr.helpers.CalculateHelper;
 import com.juanfrasr.interfaces.CoinsService;
 import com.juanfrasr.model.Bank;
 import com.juanfrasr.model.Coin;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class CoinsServiceImpl implements CoinsService , ILogger{
 
     private static final Map<String,Coin> SUPPORTED_COIN_MAP = new HashMap<>();
-    private CalculoHelper calculoHelper = CalculoHelper.getInstance();
+    private CalculateHelper calculoHelper = CalculateHelper.getInstance();
 
     static {
         SUPPORTED_COIN_MAP.put("2€",new Coin("2 euros",2,true ));
@@ -36,7 +36,7 @@ public class CoinsServiceImpl implements CoinsService , ILogger{
     }
 
     @Override
-    public List<Coin> addCoinToList(List<Coin> lCoins, String coin) {
+    public List<Coin> addCoin(List<Coin> lCoins, String coin) {
         final String trimString = coin.trim();
 
         if(!"".equals(trimString)){
@@ -48,17 +48,17 @@ public class CoinsServiceImpl implements CoinsService , ILogger{
     }
 
     @Override
-    public List<Coin> refundCoin(List<Coin> lCoin, Product product){
+    public List<Coin> returnCoin(List<Coin> lCoin, double price){
         Collection<Coin> lCoins = SUPPORTED_COIN_MAP.values();
 
         List<Coin> result = lCoins.stream().sorted((p1,p2) -> Double.compare(p2.getValue(), p1.getValue())).collect(Collectors.toList());
-        List<Coin> refundCoind = calculoHelper.calcular(product.getPrice(), result);
+        List<Coin> refundCoind = calculoHelper.calcular(price, result);
 
         return refundCoind;
     }
 
     @Override
-    public Bank refillCoin(List<Coin> lCoins, Bank bank) {
+    public Bank insertCoin(List<Coin> lCoins, Bank bank) {
         double sum = lCoins.stream().mapToDouble(c->c.getValue()).sum();
 
         bank.setTotal(bank.getTotal() + sum);

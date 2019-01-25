@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ProductService {
     void addProductsInStock(Map<Product, Integer> mProducts);
     ProductStock findProduct(String nameProcuct);
-    ProductStock returnOneProduct(Product product);
+    ProductStock returnProduct(Product product);
     List<ProductStock> getAllProductStock();
-    ProductStock refilldProduct(Product product,int quantity);
+    ProductStock rechargeProduct(Product product, int quantity);
 }

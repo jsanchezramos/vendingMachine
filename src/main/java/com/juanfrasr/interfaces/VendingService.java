@@ -5,8 +5,9 @@ import com.juanfrasr.model.Product;
 import java.util.Map;
 
 public interface VendingService {
-    Boolean upServiceMachine(final String coinString);
+    Boolean startVendingMachine(final String coinString);
     Boolean addNewProductVending(final Map<Product,Integer> product);
+    void sellProduct(Product product);
     void addCoinVending(final String coinString);
     double getCash();
 }

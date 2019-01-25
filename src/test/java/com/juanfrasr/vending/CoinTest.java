@@ -28,7 +28,7 @@ public class CoinTest {
         List<Coin> lCoins = new ArrayList<>();
         Product product = new Product("Coke",0.90);
 
-        List<Coin> lCoin = coinsService.refundCoin(lCoins,product);
+        List<Coin> lCoin = coinsService.returnCoin(lCoins,product.getPrice());
 
         assertTrue(lCoin.get(0).getValue() == 0.50);
         assertTrue(lCoin.get(1).getValue() == 0.20);
@@ -50,7 +50,7 @@ public class CoinTest {
         List<Coin> lCoinRefill = new ArrayList<>();
         lCoinRefill.add(new Coin("2 euros",2,true));
 
-        bank = coinsService.refillCoin(lCoinRefill,bank);
+        bank = coinsService.insertCoin(lCoinRefill,bank);
 
         assertTrue(bank.getTotal() != 0.50);
         assertTrue(bank.getAvailable().size()>1);

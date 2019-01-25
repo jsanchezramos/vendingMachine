@@ -24,7 +24,7 @@ public class ProductTest {
         ProductService productService = new ProductServiceImpl();
 
         Product product = new Product("Coke",1.50);
-        ProductStock productStock = productService.returnOneProduct(product);
+        ProductStock productStock = productService.returnProduct(product);
 
         assertTrue(productStock.getQuantity() == 11);
     }
@@ -38,7 +38,7 @@ public class ProductTest {
         List<ProductStock> allProductStock =  productService.getAllProductStock();
         Product product = allProductStock.get(0).getProduct();
 
-        ProductStock productStock = productService.refilldProduct(product,100);
+        ProductStock productStock = productService.rechargeProduct(product,100);
 
         assertTrue(productStock.getQuantity() > 10);
     }

@@ -31,7 +31,7 @@ public class VendingMachineTest {
         ProductService productService = new ProductServiceImpl();
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
-        assertTrue(vendingService.upServiceMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
+        assertTrue(vendingService.startVendingMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
 
     }
 
@@ -45,7 +45,7 @@ public class VendingMachineTest {
         ProductService productService = new ProductServiceImpl();
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
-        assertFalse(vendingService.upServiceMachine("0.12€ 0.25€ 0.25€ 0.69€ 0.035€"));
+        assertFalse(vendingService.startVendingMachine("0.12€ 0.25€ 0.25€ 0.69€ 0.035€"));
     }
 
     /**
@@ -64,7 +64,7 @@ public class VendingMachineTest {
 
         assertTrue(vendingService.addNewProductVending(PRODUTS_STOCK));
 
-        assertTrue(vendingService.upServiceMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
+        assertTrue(vendingService.startVendingMachine("0.11€ 0.25€ 0.25€ 0.10€ 0.05€"));
 
     }
     /**
@@ -76,11 +76,26 @@ public class VendingMachineTest {
         ProductService productService = new ProductServiceImpl();
         VendingService vendingService = new VendingServiceImpl(coinsService,productService);
 
-        vendingService.upServiceMachine("0.10€");
+        vendingService.startVendingMachine("0.10€");
         vendingService.addCoinVending("2€");
         assertTrue(vendingService.getCash() == 2.10);
 
         vendingService.addCoinVending("0.50€");
         assertTrue(vendingService.getCash() == 2.60);
+    }
+
+    /**
+     *  Sell product.
+     */
+    @Test
+    public void sellProductTest(){
+        CoinsService coinsService = new CoinsServiceImpl();
+        ProductService productService = new ProductServiceImpl();
+        VendingService vendingService = new VendingServiceImpl(coinsService,productService);
+
+        vendingService.startVendingMachine("2€");
+
+        vendingService.sellProduct(new Product("Sprite",1.40));
+
     }
 }

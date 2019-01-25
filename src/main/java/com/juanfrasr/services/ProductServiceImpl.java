@@ -28,9 +28,11 @@ public class ProductServiceImpl implements ProductService , ILogger{
     }
 
     @Override
-    public ProductStock returnOneProduct(Product product) {
+    public ProductStock returnProduct(Product product) {
         ProductStock productStock = findProduct(product.getName());
-        productStock.setQuantity(productStock.getQuantity() +1);
+        log().info("Stock product: "+ productStock.getQuantity());
+
+        productStock.setQuantity(productStock.getQuantity() - 1);
 
         productMemory.updateProductStock(productStock);
 
@@ -48,7 +50,7 @@ public class ProductServiceImpl implements ProductService , ILogger{
     }
 
     @Override
-    public ProductStock refilldProduct(Product product, int quantity) {
+    public ProductStock rechargeProduct(Product product, int quantity) {
         ProductStock productStock = findProduct(product.getName());
         productStock.setQuantity(quantity + productStock.getQuantity());
         productMemory.updateProductStock(productStock);
