@@ -21,18 +21,18 @@ public class CalculateHelper {
     }
 
 
-    public List<Coin> calculate(double importe, List<Coin> lCoins)
+    public List<Coin> calculate(double importe, List<Coin> validCoins)
     {
         double total = 0;
         List<Coin> outCoin = new ArrayList<>();
 
-        while (total<importe && !lCoins.isEmpty()) {
-            double x = lCoins.get(0).getValue();
+        while (total<importe && !validCoins.isEmpty()) {
+            double x = validCoins.get(0).getValue();
             if ((total+x) <= importe) {
-                outCoin.add(lCoins.get(0));
+                outCoin.add(validCoins.get(0));
                 total= total + x;
             } else {
-                lCoins.remove(0);
+                validCoins.remove(0);
             }
         }
         return outCoin;

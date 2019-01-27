@@ -1,6 +1,5 @@
 package com.juanfrasr.services;
 
-import com.juanfrasr.exceptions.NotMoneyException;
 import com.juanfrasr.interfaces.CoinsService;
 import com.juanfrasr.interfaces.ProductService;
 import com.juanfrasr.interfaces.VendingService;
@@ -43,24 +42,24 @@ public class VendingServiceImpl implements VendingService, ILogger {
 
     @Override
     public Boolean startVendingMachine(final String coinString){
-        try{
+        try {
             List<Coin> rejected = validateCoins(coinString);
+            statusVending = false;
 
-            if(bank.getAvailable().isEmpty()){
-                throw new NotMoneyException();
+            if (!bank.getAvailable().isEmpty()) {
+                vendingMachine = new VendingMachine(productService.getAllProductStock(), bank);
+
+                if (rejected.size() > 0)log().info("returning coins: {}", rejected.size());
+
+                if (vendingMachine != null) {
+                    log().info("Ok start Service Machine");
+                    statusVending = true;
+                }
+            }else{
+                log().info("Not money, not start machine");
             }
-
-            vendingMachine = new VendingMachine(productService.getAllProductStock(), bank);
-
-            if(rejected.size()>0)log().info("returning coins: {}", rejected);
-
-            if(vendingMachine != null){
-                log().info("Ok up Service Machine");
-                statusVending = true;
-            }
-        }catch(Exception ex){
-            log().error("Error up Service Machine",ex);
-            return false;
+        } catch(Exception ex){
+            log().error("Error start Service Machine ", ex);
         }
         return statusVending;
     }
@@ -78,17 +77,24 @@ public class VendingServiceImpl implements VendingService, ILogger {
     }
 
     @Override
-    public void sellProduct(Product product) {
-        ProductStock productStock = productService.returnProduct(product);
+    public Boolean sellProduct(Product product) {
+        Boolean ok = false;
+        ProductStock productStock = productService.returnProductStock(product);
         log().info("stock product : "+ productStock.getQuantity());
-        log().info("cash: "+bank.getTotal());
 
-        double change = bank.getTotal() - productStock.getProduct().getPrice();
-        List<Coin> lCoin = coinsService.returnCoin(bank.getAvailable(),change);
+        if(productStock != null && productStock.getQuantity()>0 && bank != null && bank.getTotal()>= product.getPrice()){
+            log().info("cash: "+bank.getTotal());
+            double change = bank.getTotal() - productStock.getProduct().getPrice();
+            List<Coin> lCoin = coinsService.returnCoin(change);
 
-        bank.setAvailable(lCoin);
+            bank.setAvailable(lCoin);
 
-        log().info( " Total cash to return productg "+ bank.getTotal());
+            log().info( "Product change "+ bank.getTotal());
+            ok = true;
+        }else{
+            log().info("not sufficient money or no stock product");
+        }
+        return ok;
     }
 
     @Override
@@ -98,7 +104,7 @@ public class VendingServiceImpl implements VendingService, ILogger {
     }
 
     @Override
-    public double getCash() {
+    public double getCoinCurrent() {
         return bank.getTotal();
     }
 }

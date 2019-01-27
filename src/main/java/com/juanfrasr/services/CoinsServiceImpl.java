@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class CoinsServiceImpl implements CoinsService , ILogger{
 
     private static final Map<String,Coin> SUPPORTED_COIN_MAP = new HashMap<>();
-    private CalculateHelper calculoHelper = CalculateHelper.getInstance();
+    private CalculateHelper calculateHelper = CalculateHelper.getInstance();
 
     static {
         SUPPORTED_COIN_MAP.put("2€",new Coin("2 euros",2,true ));
@@ -47,11 +47,11 @@ public class CoinsServiceImpl implements CoinsService , ILogger{
     }
 
     @Override
-    public List<Coin> returnCoin(List<Coin> lCoin, double price){
+    public List<Coin> returnCoin(double price){
         Collection<Coin> lCoins = SUPPORTED_COIN_MAP.values();
 
         List<Coin> result = lCoins.stream().sorted((p1,p2) -> Double.compare(p2.getValue(), p1.getValue())).collect(Collectors.toList());
-        List<Coin> refundCoind = calculoHelper.calculate(price, result);
+        List<Coin> refundCoind = calculateHelper.calculate(price, result);
 
         return refundCoind;
     }

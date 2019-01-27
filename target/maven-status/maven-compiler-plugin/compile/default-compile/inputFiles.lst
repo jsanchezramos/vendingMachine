@@ -2,12 +2,12 @@
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/exceptions/NotMoneyException.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/model/ProductStock.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/model/Coin.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/helpers/CalculateHelper.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/services/ProductServiceImpl.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/model/VendingMachine.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/interfaces/ProductService.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/exceptions/NotProductInStock.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/interfaces/CoinsService.java
-/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/helpers/CalculoHelper.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/services/VendingServiceImpl.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/services/CoinsServiceImpl.java
 /Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/main/java/com/juanfrasr/services/ILogger.java

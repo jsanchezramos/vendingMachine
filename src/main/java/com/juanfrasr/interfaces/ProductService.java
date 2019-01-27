@@ -8,8 +8,9 @@ import java.util.Map;
 
 public interface ProductService {
     void addProductsInStock(Map<Product, Integer> mProducts);
-    ProductStock findProduct(String nameProcuct);
-    ProductStock returnProduct(Product product);
+    ProductStock findProductByName(String nameProcuct);
+    ProductStock findProduct(Product product);
+    ProductStock returnProductStock(Product product);
     List<ProductStock> getAllProductStock();
-    ProductStock rechargeProduct(Product product, int quantity);
+    ProductStock addQuantityInProduct(Product product, int quantity);
 }

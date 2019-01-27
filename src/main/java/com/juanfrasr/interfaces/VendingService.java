@@ -1,13 +1,15 @@
 package com.juanfrasr.interfaces;
 
+import com.juanfrasr.model.Coin;
 import com.juanfrasr.model.Product;
 
+import java.util.List;
 import java.util.Map;
 
 public interface VendingService {
     Boolean startVendingMachine(final String coinString);
     Boolean addNewProductVending(final Map<Product,Integer> product);
-    void sellProduct(Product product);
+    Boolean sellProduct(Product product);
     void addCoinVending(final String coinString);
-    double getCash();
+    double getCoinCurrent();
 }
