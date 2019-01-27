@@ -21,7 +21,7 @@ public class CalculateHelper {
     }
 
 
-    public List<Coin> calcular(double importe, List<Coin> lCoins)
+    public List<Coin> calculate(double importe, List<Coin> lCoins)
     {
         double total = 0;
         List<Coin> outCoin = new ArrayList<>();

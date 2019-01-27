@@ -26,7 +26,7 @@ public class ProductTest {
         Product product = new Product("Coke",1.50);
         ProductStock productStock = productService.returnProduct(product);
 
-        assertTrue(productStock.getQuantity() == 11);
+        assertTrue(productStock.getQuantity() == 9);
     }
 
     /**

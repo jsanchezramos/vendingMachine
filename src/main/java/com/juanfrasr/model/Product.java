@@ -3,10 +3,10 @@ package com.juanfrasr.model;
 /**
  * Class product
  */
-public class Product {
+public final class Product {
 
-    private String name;
-    private double price;
+    final private String name;
+    final private double price;
 
     public Product(String name, double price) {
         this.name = name;
@@ -17,15 +17,8 @@ public class Product {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 }

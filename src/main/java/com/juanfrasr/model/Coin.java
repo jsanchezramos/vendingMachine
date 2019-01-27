@@ -4,11 +4,11 @@ package com.juanfrasr.model;
  * Class Coin to differents types of coins
  */
 
-public class Coin {
+public final class Coin {
 
-    private String name;
-    private double value;
-    private boolean valid;
+    final private String name;
+    final private double value;
+    final private boolean valid;
 
     public Coin(String name, double value, boolean valid) {
         this.name = name;
@@ -20,23 +20,11 @@ public class Coin {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
-
     public boolean isValid() {
         return valid;
-    }
-
-    public void setValid(boolean valid) {
-        this.valid = valid;
     }
 }

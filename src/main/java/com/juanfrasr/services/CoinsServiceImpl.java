@@ -4,7 +4,6 @@ import com.juanfrasr.helpers.CalculateHelper;
 import com.juanfrasr.interfaces.CoinsService;
 import com.juanfrasr.model.Bank;
 import com.juanfrasr.model.Coin;
-import com.juanfrasr.model.Product;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -52,16 +51,13 @@ public class CoinsServiceImpl implements CoinsService , ILogger{
         Collection<Coin> lCoins = SUPPORTED_COIN_MAP.values();
 
         List<Coin> result = lCoins.stream().sorted((p1,p2) -> Double.compare(p2.getValue(), p1.getValue())).collect(Collectors.toList());
-        List<Coin> refundCoind = calculoHelper.calcular(price, result);
+        List<Coin> refundCoind = calculoHelper.calculate(price, result);
 
         return refundCoind;
     }
 
     @Override
     public Bank insertCoin(List<Coin> lCoins, Bank bank) {
-        double sum = lCoins.stream().mapToDouble(c->c.getValue()).sum();
-
-        bank.setTotal(bank.getTotal() + sum);
         bank.getAvailable().stream().collect(Collectors.toCollection(()-> lCoins));
         bank.setAvailable(lCoins);
 

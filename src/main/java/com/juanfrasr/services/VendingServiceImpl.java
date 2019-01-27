@@ -87,7 +87,6 @@ public class VendingServiceImpl implements VendingService, ILogger {
         List<Coin> lCoin = coinsService.returnCoin(bank.getAvailable(),change);
 
         bank.setAvailable(lCoin);
-        bank.setTotal(lCoin.stream().mapToDouble(c->c.getValue()).sum());
 
         log().info( " Total cash to return productg "+ bank.getTotal());
     }
@@ -96,8 +95,6 @@ public class VendingServiceImpl implements VendingService, ILogger {
     public void addCoinVending(String coinString) {
         List<Coin> lCoin = bank.getAvailable();
         bank.setAvailable(coinsService.addCoin(lCoin,coinString));
-        double sum = lCoin.stream().mapToDouble(c->c.getValue()).sum();
-        bank.setTotal(sum);
     }
 
     @Override

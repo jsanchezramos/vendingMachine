@@ -6,21 +6,16 @@ package com.juanfrasr.model;
 
 public class ProductStock {
 
-    private Product product;
+    final private Product product;
     private int quantity;
 
     public ProductStock(Product product, int quantity) {
-        this.product = product;
+        this.product = new Product(product.getName(),product.getPrice());
         this.quantity = quantity;
     }
 
-
     public Product getProduct() {
         return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 
     public int getQuantity() {

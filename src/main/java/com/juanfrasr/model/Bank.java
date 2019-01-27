@@ -17,6 +17,8 @@ public class Bank {
 
     public void setAvailable(List<Coin> available) {
         this.available = available;
+        double sum = available.stream().mapToDouble(c->c.getValue()).sum();
+        this.setTotal(sum);
     }
 
     public double getTotal() {
