@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -61,7 +60,7 @@ public class VendingServiceTest {
      * Sell product in the vending machine
      */
     @Test
-    public void sellProductInVeding(){
+    public void sellProductInVending(){
         Product product= new Product("Sprite",1.40);
         assertFalse(vendingService.sellProduct(product));
         vendingService.startVendingMachine("1€");

@@ -18,6 +18,7 @@ Defined different TDD:
 - Check not valid money to up machine
 - Vending add new product and stock.
 - Vending add coins
+- Sell product
 
 
 Import project to Intelij idea to run  tdd in project execute : 

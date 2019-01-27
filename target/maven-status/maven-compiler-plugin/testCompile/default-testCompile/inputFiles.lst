@@ -1,3 +1,5 @@
-/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/ProductTest.java
-/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/VendingMachineTest.java
-/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/CoinTest.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/services/VendingServiceTest.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/repository/MemoryTest.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/services/CoinServiceTest.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/services/ProductServiceTest.java
+/Users/juanfranciscosanchezramos/Documents/development/vendingMachine/src/test/java/com/juanfrasr/vending/helper/CalculateTest.java
