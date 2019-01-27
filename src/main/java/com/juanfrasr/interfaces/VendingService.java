@@ -1,9 +1,7 @@
 package com.juanfrasr.interfaces;
 
-import com.juanfrasr.model.Coin;
 import com.juanfrasr.model.Product;
 
-import java.util.List;
 import java.util.Map;
 
 public interface VendingService {
