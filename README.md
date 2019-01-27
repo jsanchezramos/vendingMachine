@@ -21,8 +21,9 @@ Defined different TDD:
 - Sell product
 
 
-Import project to Intelij idea to run  tdd in project execute : 
+# Execute Test 
 
 ```
+cd vendingMachine
 mvn test
 ```
