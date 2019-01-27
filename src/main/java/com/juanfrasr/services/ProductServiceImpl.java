@@ -45,7 +45,6 @@ public class ProductServiceImpl implements ProductService , ILogger{
             productStock.setQuantity(productStock.getQuantity() - 1);
             productMemory.updateProductStock(productStock);
         }
-
         return  productStock;
     }
 
