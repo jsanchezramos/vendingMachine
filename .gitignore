@@ -86,7 +86,3 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-/target/
-target/classes/log4j.properties
-target/generated-sources/
-target/generated-test-sources/
