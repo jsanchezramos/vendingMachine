@@ -18,7 +18,7 @@ public class CalculateTest {
      * return corrent coins to expecific price
      */
     @Test
-    public void returnCorrenctCoins(){
+    public void returnCorrectCoins(){
         CalculateHelper calculateHelper = CalculateHelper.getInstance();
 
         List<Coin> validCoins = new ArrayList<>();
