@@ -23,9 +23,9 @@ public class ProductServiceImpl implements ProductService , ILogger{
     }
 
     @Override
-    public ProductStock findProductByName(String nameProcuct) {
+    public ProductStock findProductByName(String nameProduct) {
         List<ProductStock> lProduct = productMemory.getAllProducts();
-        return lProduct.stream().filter(p-> p.getProduct().getName().equals(nameProcuct)).findFirst().orElse(null);
+        return lProduct.stream().filter(p-> p.getProduct().getName().equals(nameProduct)).findFirst().orElse(null);
 
     }
 

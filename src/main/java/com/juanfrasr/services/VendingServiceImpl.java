@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class VendingServiceImpl implements VendingService, ILogger {
 
     private VendingMachine vendingMachine = null;
-    private CoinsService coinsService ;
+    private CoinsService coinsService;
     private ProductService productService;
     private Bank bank;
     private Boolean statusVending = false;
