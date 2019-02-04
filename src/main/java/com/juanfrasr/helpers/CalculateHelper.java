@@ -21,14 +21,14 @@ public class CalculateHelper {
     }
 
 
-    public List<Coin> calculate(double quantity, List<Coin> validCoins)
+    public List<Coin> calculate(double returnCoin, List<Coin> validCoins)
     {
         double total = 0;
         List<Coin> outCoin = new ArrayList<>();
 
-        while (total<quantity && !validCoins.isEmpty()) {
+        while (total<returnCoin && !validCoins.isEmpty()) {
             double x = validCoins.get(0).getValue();
-            if ((total+x) <= quantity) {
+            if ((total+x) <= returnCoin) {
                 outCoin.add(validCoins.get(0));
                 total= total + x;
             } else {

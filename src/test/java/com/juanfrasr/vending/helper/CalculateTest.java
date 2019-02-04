@@ -15,7 +15,7 @@ import static junit.framework.TestCase.assertTrue;
 public class CalculateTest {
 
     /**
-     * return corrent coins to expecific price
+     * return correct coins to expecific price
      */
     @Test
     public void returnCorrectCoins(){
